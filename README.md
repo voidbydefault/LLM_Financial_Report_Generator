@@ -1,4 +1,6 @@
-# LLM-Powered Executive Report Generator
+![img.png](img.png)
+
+# Transforming Management Reporting with Generative AI (LLM)
 
 ## 1. Objective
 
