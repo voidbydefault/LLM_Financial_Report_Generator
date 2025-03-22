@@ -14,6 +14,7 @@ import subprocess
 import sys
 import time
 import logging
+
 from md_to_word import convert_md_to_docx
 from analysis.report_generation import generate_report
 
@@ -24,6 +25,7 @@ model_name = "phi4:latest" # gives best results, takes 16 GB of GPU RAM
 # model_name = "deepseek-r1:1.5b" #smallest model takes 3 GB of GPU RAM adds <THINKING>
 output_dir = "./output"
 temperature = 0.1
+max_tokens = 2048  # Experiment with this to tweak depth of report (context window)
 md_report = os.path.join(output_dir, "executive_report.md")
 
 
@@ -84,7 +86,7 @@ def main():
         else:
             print("Regenerating report...")
             logging.info("Regenerating report")
-            report_md = generate_report(file_path, output_dir, model_name, temperature)
+            report_md = generate_report(file_path, output_dir, model_name, temperature, max_tokens)
             if report_md:
                 with open(md_report, 'w') as f:
                     f.write(report_md)
@@ -95,7 +97,7 @@ def main():
     else:
         print("No existing report found - generating new report...")
         logging.info("Generating new report")
-        report_md = generate_report(file_path, output_dir, model_name, temperature)
+        report_md = generate_report(file_path, output_dir, model_name, temperature, max_tokens)
         if report_md:
             with open(md_report, 'w') as f:
                 f.write(report_md)

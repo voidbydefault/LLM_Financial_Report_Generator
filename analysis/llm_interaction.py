@@ -13,7 +13,7 @@ import requests
 import logging
 
 
-def query_llm(prompt: str, model: str, temperature: float) -> str | None:
+def query_llm(prompt: str, model: str, temperature: float, max_tokens: int) -> str | None:
     """Queries local LLM with data-focused prompting."""
     system_prompt = """You are a data analyst assistant. Your task is to analyze and describe 
     the provided data in a factual manner. Follow these rules:
@@ -33,6 +33,7 @@ def query_llm(prompt: str, model: str, temperature: float) -> str | None:
                 "model": model,
                 "prompt": full_prompt,
                 "temperature": temperature,
+                "max_tokens": max_tokens,
                 "stream": False
             },
             timeout=120

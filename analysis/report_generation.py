@@ -20,7 +20,7 @@ import logging
 
 
 def generate_markdown_report(annual_revenue: pd.DataFrame, tenant_revenue: pd.DataFrame, visualization_paths: Dict[str, List[str]],
-                             tenant_change_results: Dict, model_name: str, temperature: float) -> str:
+                             tenant_change_results: Dict, model_name: str, temperature: float, max_tokens: int) -> str:
     """Generates the markdown report content."""
 
     # Basic Statistics
@@ -46,7 +46,7 @@ def generate_markdown_report(annual_revenue: pd.DataFrame, tenant_revenue: pd.Da
         Output format:
         - Start with overall trend summary
         - Bullet points of key observations
-        - End with largest contributor percentage""", model_name, temperature
+        - End with largest contributor percentage""", model_name, temperature, max_tokens
     )
 
     # Create markdown content
@@ -97,7 +97,7 @@ def generate_markdown_report(annual_revenue: pd.DataFrame, tenant_revenue: pd.Da
             Output format:
             - Summary statement
             - Key percentages
-            - Risk assessment""", model_name, temperature
+            - Risk assessment""", model_name, temperature, max_tokens
         )
 
         md_content += f"\n### {prop_name}\n"
@@ -138,7 +138,7 @@ def generate_markdown_report(annual_revenue: pd.DataFrame, tenant_revenue: pd.Da
                 Output format:
                 - Net change summary
                 - Top 3 contributors
-                - Loss mitigation suggestions""", model_name, temperature
+                - Loss mitigation suggestions""", model_name, temperature, max_tokens
             )
 
             # Find matching visualization
@@ -164,7 +164,7 @@ def generate_markdown_report(annual_revenue: pd.DataFrame, tenant_revenue: pd.Da
     return md_content
 
 
-def generate_report(file_path: str, output_dir: str, model_name: str, temperature: float) -> str | None:
+def generate_report(file_path: str, output_dir: str, model_name: str, temperature: float, max_tokens: int) -> str | None:
     """Generates the full report."""
     # Load and preprocess data
     df_long, df = load_and_preprocess_data(file_path)
@@ -186,5 +186,5 @@ def generate_report(file_path: str, output_dir: str, model_name: str, temperatur
 
     # Generate markdown report
     report_md = generate_markdown_report(annual_revenue, tenant_revenue, visualization_paths,
-                                          tenant_change_results, model_name, temperature)
+                                          tenant_change_results, model_name, temperature, max_tokens)
     return report_md
