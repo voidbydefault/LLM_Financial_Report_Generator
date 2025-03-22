@@ -6,8 +6,7 @@
 
 This project is a proof-of-concept demonstrating how to combine data analysis techniques with Large Language Models (LLMs) to automatically generate management reports from raw financial data stored in Excel format. 
 
-The goal is to streamline the report generation process, providing data-driven insights with AI-generated summaries and visualizations, a life changer for accounting and finance professionals.
-
+The goal is to streamline the report generation process, providing data-driven insights with AI-generated summaries and visualizations, a life changer for accounting and finance professionals. Watch [demonstration video](https://www.youtube.com/watch?v=4qEi_lSWkG4) here.
 
 ## 2. Setup and Installation
 
